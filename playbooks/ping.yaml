@@ -1,14 +1,6 @@
 ---
-- name: this is ping playbook
-  hosts: remote-hosts
-  tasks:
-    - name: ping all servers
-      ping:
-
-    - name: Add the user 'bob' with uid 1500
-      user:
-        name: bob
-        uid: 1500
-        comment: System Engineer
-        
-        
+  - name: Ping Hosts
+    hosts: production
+    tasks:
+      - name: Ping Hosts
+        ping:

@@ -1,0 +1,10 @@
+---
+  - name: This is playbook will add folder to remote server
+    hosts: production
+    tasks:
+
+
+    - name: create directory under /tmp
+      file:
+        path: /tmp/testfolder5
+        state: absent
