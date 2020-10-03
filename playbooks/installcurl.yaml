@@ -1,0 +1,8 @@
+---
+  - name: Install curl on db server in prodinventory
+    hosts: db
+    tasks:
+      - name: install curl on db server 
+        yum:
+          name: curl
+          state: present

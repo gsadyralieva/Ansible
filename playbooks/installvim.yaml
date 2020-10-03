@@ -1,0 +1,8 @@
+---
+  - name: Install vim on app server in devinventory
+    hosts: app
+    tasks:
+      - name: install vim on app server 
+        yum:
+          name: vim
+          state: present
