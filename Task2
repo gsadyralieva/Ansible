@@ -1,0 +1,7 @@
+# ansible -i inventory/newhosts dev-servers  -m ping
+#ansible -i inventory/newhosts dev-servers  -m setup -a "filter=ansible_distribution_*"
+# ansible -i inventory/newhosts dev-servers   -m  shell -a "free -m"
+# ansible -i inventory/newhosts dev-servers   -m  shell -a “df  -h”
+# ansible-playbook -i inventory/newhosts playbooks/updatehosts.yaml
+# ansible-playbook -i inventory/newhosts playbooks/reboothosts.yaml
+# ansible-playbook -i inventory/newhosts playbooks/apache.yaml
