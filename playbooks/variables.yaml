@@ -1,7 +1,8 @@
 ---
   - name: Host Variable
     hosts: "{{ group }}"
-    gather_facts: no
+    vars_files:
+      - "../variables/values-variables.yaml"
     tasks:
 
       - name: Install yum packages

@@ -2,3 +2,10 @@
 inventory
 *inventory
 inventory*
+
+#Ignore var folder
+variables
+variables*
+*variables
+var
+var*

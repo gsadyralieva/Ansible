@@ -1,0 +1,13 @@
+---
+  - name: Host Variable
+    hosts: "{{ group }}"
+    tasks:
+
+      - name: check free disk
+        when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7"
+        command: df -h
+        register: command_output
+
+      - name: Run debug to read command_output
+        debug: 
+          var: command_output
