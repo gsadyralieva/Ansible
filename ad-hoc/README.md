@@ -43,12 +43,65 @@ The following command checks if yum package is installed or not, but does not up
 $ Ansible abc -m yum -a "name = demo-tomcat-1 state = present"
 ```
 The following command check the package is not installed.
-
+```
 $ Ansible abc -m yum -a "name = demo-tomcat-1 state = absent" 
+```
 The following command checks the latest version of package is installed.
-
+```
 $ Ansible abc -m yum -a "name = demo-tomcat-1 state = latest" 
+```
 Gathering Facts
 Facts can be used for implementing conditional statements in playbook. You can find adhoc information of all your facts through the following Ad-hoc command −
-
+```
 $ Ansible all -m setup 
+```
+
+Tasks:
+# Check free memory  of Hosts group with ansible ad-hoc command
+```
+ansible -i testhosts hosts   -m  shell -a "free -m"
+```
+
+# Check disk available of all-servers group with ansible ad-hoc command
+```
+ansible -i testhosts  localhost all-servers   -m  shell -a "df -h"
+```
+
+ 3. Install top package only  on the localhost , using all-servers  group with ansible ad-hoc command
+
+#Install top package only  on the localhost , using all-servers  group with ansible ad-hoc comm
+```
+ansible -i testhosts  all-servers   -m  yum -a "name=htop state=latest" --limit localhost
+```
+
+#move testfiles from /tmp folder to /tmp/destination folder  , using ansible ad-hoc command
+```
+ansible -i testhosts localhost -m command -a “mv /tmp/testfile1 /tmp/destination”
+```
+#  change the perm  of /tmp/destination
+```
+ansible -i testhosts all-servers  -m file -a "path=/tmp/destination/testfile1 mode='777'"
+```
+# setup module 
+```
+ansible -i testhosts all -m setup -a "gather_subset=all"
+```
+# filter setup module
+```
+ansible -i testhosts all -m setup -a "filter=ansible_distribution"
+```
+filter distribution major version of os distribution 
+```
+ansible -i testhosts all -m setup -a "filter=ansible_distribution_major_version"
+
+ansible -i testhosts all -m setup -a "filter=ansible_distribution_*"
+```
+
+
+Run ansible ad-hoc to check the hostnames of the development group servers
+```
+$ ansible -i inventory/devinventory development -m setup -a "filter=ansible_host*"
+$ ansible -i inventory/devinventory development -m setup -a "filter=ansible_hostname”
+```
+
+
