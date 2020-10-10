@@ -1,0 +1,62 @@
+1.Add 2 new hosts to ansible-server
+
+a.Host1 - CentOS6
+b.Host2 - CentOS7
+
+2.Create an inventory file under inventory folder called “newhosts”
+
+a.Create a group called “dev-servers”
+b.Add both hosts to this inventory under “dev-servers” group
+
+Ad-Hoc Commsnds:
+
+The following tasks need to be completed using ansible-ad hoc commands:
+
+1.Run ansible ad-hoc command and ensure ansible-server can ping the newly added
+hosts
+```
+# ansible -i inventory/newhosts dev-servers  -m ping
+```
+
+2.Run ansible ad-hoc command to find the distribution of newly added hosts
+```
+#ansible -i inventory/newhosts dev-servers  -m setup -a "filter=ansible_distribution_*"
+```
+
+3.Run ansible ad-hoc command to check the free memory of newly added hosts
+```
+# ansible -i inventory/newhosts dev-servers   -m  shell -a "free -m"
+```
+
+4.Run ansible ad-hoc command to check storage available in newly added hosts
+```
+# ansible -i inventory/newhosts dev-servers   -m  shell -a “df  -h”
+```
+
+Playbooks:
+
+1.Write an ansible playbook called “updatehosts.yaml”, this playbook should update all the
+packages in newly added hosts. Run the playbook to ensure the hosts are updated.
+```
+# ansible-playbook -i inventory/newhosts playbooks/updatehosts.yaml
+```
+2.Write an ansible playbook called “reboothosts.yaml”, this playbook will reboot newly
+added ansible hosts. Run the playbook to ensure the hosts are rebooted.
+```
+# ansible-playbook -i inventory/newhosts playbooks/reboothosts.yaml
+```
+3.Write an ansible playbook that checks installs apache, starts apache and enables
+apache. Run the playbook to ensure apache is installed in both of the newly added
+hosts. Hint: you will need to use “when” module here
+​```
+ # ansible-playbook -i inventory/newhosts playbooks/apache.yaml
+```
+
+Clean up 
+
+1.Once the tasks are done, push your code to Github, make sure the inventory folder is
+ignored.
+
+2.Share the link to your Github in the group.
+
+3.Delete newly added hosts.
