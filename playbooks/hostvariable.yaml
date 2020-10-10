@@ -1,0 +1,8 @@
+---
+  - name: Host Variable
+    hosts: "{{ group }}"
+    gather_facts: no
+    tasks:
+
+      - name: Ping Hosts
+        ping:

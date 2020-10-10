@@ -1,0 +1,9 @@
+---
+  - name: Host Variable
+    hosts: "{{ group }}"
+    gather_facts: no
+    tasks:
+
+      - name: Install yum packages
+        yum: 
+          name: "{{ package }}"
