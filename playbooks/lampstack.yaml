@@ -1,0 +1,35 @@
+---
+  - name: Install LAMP Stack 
+    hosts: development
+    tasks:
+      - name: Ping hosts
+        ping:
+
+      - name: Update packages
+        yum: 
+          name: '*'
+          state: latest
+
+      - name: Install packages on Application server
+        when: ansible_hostname == "application"
+        yum:
+          name:
+            - httpd
+            - php
+            - php-mysql
+          state: latest
+
+
+      - name: Install packages on Database server
+        when: ansible_hostname == "database"
+        yum:
+          name:
+            - mariadb-server
+            - mariadb
+          state: latest
+
+      - name: start apache on application server
+        when: ansible_hostname == "application"
+        systemd:
+          name: httpd
+          state: started

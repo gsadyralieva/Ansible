@@ -1,0 +1,41 @@
+---
+  - name: Install apache to new hosts
+    hosts: dev-servers
+    tasks:
+      - name: Ping hosts
+        ping:
+
+      - name: Install apache on dev-servers
+        yum:
+          name: httpd
+          state: latest
+          
+
+      - name: ensure httpd is running
+        when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7"
+        systemd:
+          name: httpd 
+          state: started
+          enabled: yes
+
+      - name: ensure httpd is running
+        when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6"
+        service:
+          name: httpd 
+          state: started
+          enabled: yes
+
+      - name: Check status of httpd service
+        when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7"
+        service_facts:
+        register: service_state
+      - debug:
+          var: service_state.ansible_facts.services["httpd.service"].state
+      
+      - name: Check status of httpd service
+        when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6"
+        service_facts:
+        register: service_state
+      - debug:
+          var: service_state.ansible_facts.services["httpd.service"].state
+      

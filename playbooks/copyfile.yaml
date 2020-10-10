@@ -1,0 +1,11 @@
+---
+- name: Copy html file from ansible server to application server 
+  hosts: development
+  tasks:
+    - name: copy html file
+      when: ansible_hostname == "application"
+      copy:
+        src: /tmp/index.html
+        dest: /var/www/html/
+        owner: apache
+        group: apache

@@ -1,0 +1,8 @@
+---
+  - name: Reboot all hosts
+    hosts: dev-servers
+    tasks:
+      - name: Reboot all hosts
+        reboot:
+
+      
