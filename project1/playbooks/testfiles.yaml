@@ -8,5 +8,20 @@
       - name: Change file ownership, group and permissions
         file:
           path: /tmp/{{ file_name}}
+          content: 
           state: "{{ file_state }}"
           mode: "{{ file_mode }}"
+
+      - name: add a line to the file
+        lineinfile:
+          path: /tmp/{{file_name}}
+          line: "{{ add_a_line }}"
+          create: yes 
+      
+      - name: add a line to the file
+        blockinfile:
+          path: /tmp/{{ file_name }}
+          block: |
+            {{ block }}
+          
+        
