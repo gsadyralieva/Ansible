@@ -1,0 +1,12 @@
+---
+  - name: create empty file
+    hosts: "{{ group }}"
+    gather_facts: "{{ gather_facts }}"
+    vars_files:
+      - "../variables/file-values.yaml"
+    tasks:
+      - name: Change file ownership, group and permissions
+        file:
+          path: /tmp/{{ file_name}}
+          state: "{{ file_state }}"
+          mode: "{{ file_mode }}"
