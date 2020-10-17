@@ -33,3 +33,32 @@
         systemd:
           name: httpd
           state: started
+          enabled: yes
+          
+          
+      - name: start mariadb on database server
+        when: ansible_hostname == "database"
+        systemd:
+          name: mariadb
+          state: started
+          enabled: yes
+          
+      - name: Open port 80
+        firewalld:
+          service: http
+          permanent: true
+          state: enabled
+          immediate: yes
+ 
+      - name: Open port 443
+        firewalld:
+          service: https
+          permanent: true
+          state: enabled
+          immediate: yes
+          
+          
+      - name: restart firewalld
+        systemd:
+          name: firewalld
+          state: restarted
