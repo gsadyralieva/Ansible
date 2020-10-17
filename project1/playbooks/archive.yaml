@@ -1,0 +1,13 @@
+---
+- name: Compress and archive log file
+  hosts: "{{ group }}"
+  gather_facts: "{{ gather_facts }}"
+  vars_files:
+    - "../variables/archive-values.yaml"
+  tasks:
+
+    - name: Compress directory /var/log into /tmp/log.tar.gz
+      archive:
+        path: "{{ path }}"
+        dest: /tmp/{{ file_name }}
+        format: gz
