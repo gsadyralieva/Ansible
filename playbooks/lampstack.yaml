@@ -42,6 +42,19 @@
           name: mariadb
           state: started
           enabled: yes
+                 
+          
+      - name: create file info.php
+        file:
+          path: /var/www/html/info.php
+          state: touch
+          mode: u+rwx,g-wx,o-rw
+          
+          
+      - name: Add Content to the file
+        lineinfile:
+          path: /var/www/html/info.php
+          line: <?php phpinfo(); ?>
           
       - name: Open port 80
         when: ansible_hostname == "application"
@@ -63,4 +76,9 @@
       - name: restart firewalld
         systemd:
           name: firewalld
+<<<<<<< HEAD
           state: started
+=======
+          state: restarted
+
+>>>>>>> 89ff05fc1063ad9de095ddcd5b74da2e162408d3
