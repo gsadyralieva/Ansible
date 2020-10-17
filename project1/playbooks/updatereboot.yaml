@@ -1,0 +1,15 @@
+---
+- name: Update the servers and Reboot
+  hosts: "{{ group }}"
+  gather_facts: "{{ gather_facts }}"
+  vars_files:
+    - "../variables/updatereboot-values.yaml"
+  tasks:
+
+    - name: Update servers
+      when: ansible_facts['distribution_major_version'] == "7"
+      yum:
+        name: "{{ packages }}"
+        state: latest
+
+    

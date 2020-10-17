@@ -73,12 +73,8 @@
          
           
           
-      - name: restart firewalld
-        systemd:
-          name: firewalld
-<<<<<<< HEAD
-          state: started
-=======
-          state: restarted
-
->>>>>>> 89ff05fc1063ad9de095ddcd5b74da2e162408d3
+      # - name: restart firewalld
+      #   systemd:
+      #     name: firewalld
+      #     state: started
+          
