@@ -44,21 +44,23 @@
           enabled: yes
           
       - name: Open port 80
+        when: ansible_hostname == "application"
         firewalld:
-          service: http
+          port: 80
           permanent: true
           state: enabled
-          immediate: yes
+          
  
       - name: Open port 443
+        when: ansible_hostname == "application"
         firewalld:
-          service: https
+          port: 443
           permanent: true
           state: enabled
-          immediate: yes
+         
           
           
       - name: restart firewalld
         systemd:
           name: firewalld
-          state: restarted
+          state: started
