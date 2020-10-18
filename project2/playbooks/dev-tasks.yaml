@@ -6,6 +6,9 @@
     - "../variables/dev-tasks-values.yaml"
   tasks:
     - include: ../tasks/ping.yaml
-   # - include: ../tasks/checkfreedisk.yaml
     - include: ../tasks/apacheinstallation.yaml
+    - include: ../tasks/copyfile-remoteservers.yaml
+    - include: ../tasks/removeapache.yaml
+    #- include: ../tasks/checkfreedisk.yaml
+    #- include: ../tasks/movefiles.yaml
       

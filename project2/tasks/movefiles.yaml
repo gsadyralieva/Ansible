@@ -1,0 +1,2 @@
+- name: copy html file
+  command: mv  /tmp/index.html  /root/Ansible/project2/files/

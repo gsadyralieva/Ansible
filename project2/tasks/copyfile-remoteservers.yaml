@@ -1,0 +1,5 @@
+- name: copy html file
+  when: ansible_hostname == "app"
+  copy:
+    src: ../files/index.html
+    dest: /var/www/html/index.html

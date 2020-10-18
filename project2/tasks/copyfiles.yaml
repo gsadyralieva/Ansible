@@ -1,0 +1,6 @@
+- name: copy html file
+  when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7"
+  copy:
+    src: /tmp/index.html
+    dest: /root/Ansible/project2/files/index.html
+    

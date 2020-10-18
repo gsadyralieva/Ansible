@@ -1,18 +1,18 @@
  - name: Install apache on devservers
-   when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7"
+   when: ansible_hostname == "app"
    yum:
      name: httpd
      state: latest
           
  - name: ensure httpd is running
-   when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7"
+   when: ansible_hostname == "app"
    systemd:
      name: httpd 
      state: started
      enabled: yes
 
  - name: Check status of httpd service
-   when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7"
+   when: ansible_hostname == "app"
    service_facts:
    register: service_state
  - debug:
