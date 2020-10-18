@@ -1,0 +1,5 @@
+- name: check free disk of the servers
+  command: df -h
+  register: freedisk_output
+
+- debug: var=freedisk_output.stdout
