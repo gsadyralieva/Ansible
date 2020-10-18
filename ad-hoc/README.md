@@ -104,4 +104,9 @@ $ ansible -i inventory/devinventory development -m setup -a "filter=ansible_host
 $ ansible -i inventory/devinventory development -m setup -a "filter=ansible_hostname”
 ```
 
+Check which servers are running apache. Ad-hoc command. 
+```
+$ ansible -i inventory/dev.yaml  devservers -m shell -a "systemctl status httpd.servic "
+$ ansible -i inventory/dev.yaml all -m command -a "httpd --version"
+```
 
